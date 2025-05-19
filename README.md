@@ -47,7 +47,7 @@ Learn more on these fascinating technologies:
 This project is not (yet) 100% ready to use withouth some own customizations to the code.
 
 1) Install deno from https://deno.com/
-2) Start by cloding the repository
+2) Start by cloning this repository
 3) Create a .env-file in root folder with your own values as desired (see config)
 4) Go to "components/sections" and write your own text directly into each TSX file
 5) Optionally, you may want to also update some files in "components/islands"

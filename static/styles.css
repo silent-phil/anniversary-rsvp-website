@@ -1,0 +1,1345 @@
+/* resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+p {
+  text-wrap: pretty;
+  line-height: 1.4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  line-height: 1;
+}
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  padding-left: 2ch;
+}
+li {
+  list-style: none;
+  margin-bottom: 1ch;
+}
+li::before {
+  content: "-";
+  position: absolute;
+  margin-left: -1.5ch;
+}
+b,
+strong {
+  font-weight: 500;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+button {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* variables */
+
+:root {
+  --white: #fafafa;
+  --light-grey: #c6c0c2;
+  --dark-grey: #9b9799;
+  --grey: #3f3a3c;
+  --primary: #a41a33;
+  --secondary: #5c6896;
+  --red: #f44336;
+  --green: #4caf50;
+}
+
+/* styles */
+
+body {
+  font-family: "Niramit", sand-serif;
+  font-size: 18px;
+  font-weight: 300;
+  background: var(--white);
+  margin: 0;
+  padding: 0;
+}
+
+.divider {
+  margin: 2rem 0;
+  border: 0;
+  padding: 0;
+  height: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.headline {
+  color: var(--primary);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 1em 0;
+}
+.subline {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+}
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  line-height: 1;
+  padding: 0;
+  margin-bottom: 1ch;
+  color: var(--grey);
+}
+
+.headerimage {
+  margin: 0 -3rem 2rem;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.headerimage picture img {
+  width: 100%;
+  max-height: 15rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+a.link {
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.link::after {
+  display: inline-block;
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  padding-left: 0.5ch;
+  color: inherit;
+  content: "→";
+  pointer-events: none;
+  transform: translateX(-0.2ch);
+  transition: transform 0.2s ease-in-out;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a.link:hover {
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--primary);
+}
+a.link:hover::after {
+  transform: translateX(0);
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 1ch 0 0.5ch 0;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  z-index: 9;
+}
+.navbar a {
+  display: block;
+  position: relative;
+  padding: 1ch;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+}
+.navbar a::before {
+  content: "";
+  position: absolute;
+  width: 10%;
+  height: 3px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, width 0.2s ease-in-out;
+}
+.navbar a:hover::before {
+  width: calc(100% - 2ch);
+  opacity: 1;
+}
+.navbar,
+.navbar a {
+  transition: 0.2s ease-in-out;
+}
+.navbar::before {
+  position: absolute;
+  display: block;
+  content: " ";
+  top: 0;
+  left: -10%;
+  right: -10%;
+  height: 5rem;
+  background-color: transparent;
+  border-radius: 100%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+.navbar.is-overlay::before {
+  transition: background-color 0.4s ease-in-out;
+  filter: blur(30px);
+}
+.navbar.has-scrolled.is-overlay::before {
+  transition: background-color 0.6s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.6);
+  filter: blur(30px);
+}
+.navbar.has-scrolled {
+  transform: translateY(-1ch);
+}
+.navbar.is-inverted {
+  background: var(--white);
+  border-bottom: 1px solid var(--light-grey);
+}
+.navbar.is-inverted a {
+  color: var(--primary);
+}
+.navbar.is-inverted a::before {
+  background: var(--primary);
+}
+
+.footer {
+  display: block;
+  margin: auto;
+  padding: 3rem 1rem;
+  width: auto;
+  color: var(--dark-grey);
+  font-size: 0.7rem;
+  text-align: center;
+}
+.footer i {
+  color: var(--red);
+}
+.footer span + span::before {
+  content: ' | '
+}
+
+
+.section {
+  width: min(50rem, 100%);
+  height: auto;
+  padding: 2rem 4rem;
+  margin: 0 auto;
+  scroll-margin-top: 2rem;
+  display: block;
+  text-align: center;
+}
+.section p {
+  margin-bottom: 1ch;
+}
+
+.section.--intro {
+  height: 100vh;
+  width: 100%;
+  min-height: 50vw;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+.section.--intro svg.logo {
+  position: absolute;
+  top: 12%;
+  left: 6%;
+  right: 6%;
+  width: auto;
+  height: auto;
+  margin: auto;
+  max-width: 60rem;
+  transform: translateX(2%);
+}
+.section.--intro div.logo {
+  position: absolute;
+  top: 12%;
+  left: 6%;
+  right: 6%;
+  width: auto;
+  height: auto;
+  margin: auto;
+  max-width: 60rem;
+  transform: translateX(2%);
+}
+
+.section.--intro h1 {
+  position: absolute;
+  top: 10%;
+  left: 2rem;
+  right: 2rem;
+  color: white;
+  font-family: "Lifelogo Easy", sans-serif;
+  font-size: 6rem;
+  font-weight: 500;
+  text-align: center;
+}
+.section.--intro::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: -10%;
+  right: -10%;
+  height: 15vh;
+  background-color: rgb(34 90 109);
+  border-radius: 100%;
+  filter: blur(30px);
+  transform: translateY(-50%);
+  z-index: 0;
+  content: " ";
+}
+.section.--intro::after {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: -10%;
+  right: -10%;
+  height: 33vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 100%;
+  filter: blur(60px);
+  transform: translateY(50%);
+  z-index: -1;
+  content: " ";
+}
+.section.--intro picture {
+  position: relative;
+  height: 100%;
+  transform: scale(1.02);
+  transition: .5s ease-out;
+  background-color: #1573B9;
+  z-index: -1;
+}
+.section.--intro picture img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100vw;
+  min-height: 40vw;
+  object-fit: cover;
+  object-position: center;
+}
+.section.--intro div.buttons {
+  position: absolute;
+  bottom: 1rem;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.section.--intro > .badge {
+  position: absolute;
+  color: white;
+  mix-blend-mode: hard-light;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.section.--intro > .badge.--animate {
+  opacity: 1;
+}
+.section.--intro > .badge.--animate > .img {
+  animation: rotate-in 1.5s ease-in-out;
+}
+.section.--intro > .badge.is-hidden {
+  opacity: 0;
+}
+.section.--intro > .badge.wreath {
+  left: 50%;
+  bottom: max(9rem, 15vh);
+  padding: 2em 1.5em 1.7em 2.2em;
+  color: #e8e6e6;
+  font-size: 1.5rem;
+  transform: translateX(-50%);
+}
+.section.--intro > .badge.right,
+.section.--intro > .badge.left {
+  color: #d0cdc2;
+  font-size: 1.5rem;
+  opacity: .2;
+}
+.section.--intro > .badge.right {
+  bottom: 5%;
+  right: 5%;
+}
+.section.--intro > .badge.left {
+  bottom: 5%;
+  left: 5%;
+}
+.section.--intro.--hover-right > .badge.right,
+.section.--intro.--hover-left > .badge.left {
+  opacity: 1;
+}
+.section.--outro {
+  overflow: hidden;
+  position: relative;
+}
+.section.--outro q {
+  color: var(--primary);
+  font-family: "Lifelogo Easy", sans-serif;
+  font-size: 3rem;
+}
+.section.--outro q::before,
+.section.--outro q::after {
+  content: "";
+}
+
+.list {
+  width: 100%;
+  display: block;
+  margin: auto;
+  padding: 0;
+  max-width: 30rem;
+  background: white;
+  border-radius: 6px;
+  text-align: left;
+  overflow: hidden;
+}
+.list li {
+  position: relative;
+  color: var(--grey);
+  list-style: none;
+  line-height: 1;
+  padding: 1ch 4ch;
+  margin: 0;
+}
+.list li + li {
+  border-top: 1px solid var(--light-grey);
+}
+.list li:nth-child(odd) {
+  background: white;
+}
+.list li p {
+  padding: 0;
+  margin: 0;
+}
+.list li.is-active strong {
+  color: var(--secondary);
+}
+.list li.--added {
+  animation: highlight .6s ease-in-out .5s;
+}
+.list li.--removed p {
+  filter: blur(3px);
+}
+.list li small {
+  display: block;
+  font-size: 12px;
+  padding-top: 0.5ch;
+}
+.list button.remove {
+  position: absolute;
+  display: block;
+  right: 1ch;
+  height: 2em;
+  width: 2em;
+  top: 50%;
+  color: var(--red);
+  font-size: 1em;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 2em;
+  transform: translateY(-50%);
+}
+.list button.remove:hover {
+  color: white;
+  background-color: var(--red);
+}
+.list p del {
+  filter: blur(5px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.details {
+  width: 100%;
+  max-width: 30rem;
+  margin: 1rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: left;
+  gap: 1ch 3ch;
+}
+.details > * {
+  background: pinfdk;
+}
+.details dt {
+  width: 10ch;
+  flex: 0 1 auto;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+.details dd {
+  width: 50%;
+  flex: 1 0 auto;
+  text-align: left;
+}
+.details dt em {
+  font-style: normal;
+  font-size: 0.8em;
+  font-weight: 200;
+}
+.details dt i {
+  color: var(--secondary);
+  font-size: 1.5em;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 2;
+}
+.details.--facts {
+  max-width: 24rem;
+  flex-wrap: nowrap;
+  gap: 1ch;
+}
+.details.--facts dt {
+  width: auto;
+  flex: 0 0 auto;
+}
+.details.--facts dd {
+  width: 100%;
+  flex: 0 1 auto;
+}
+
+.box {
+  padding: 2ch;
+  border: 1px solid var(--light-grey);
+  border-radius: 6px;
+}
+.box h4 {
+  color: var(--grey);
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Niramit", sand-serif;
+  padding-bottom: 2ch;
+}
+
+/* form styles */
+
+.form {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 30rem;
+  text-align: left;
+}
+.form fieldset {
+  position: relative;
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+}
+.form fieldset legend {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0;
+  margin-bottom: 1ch;
+  color: var(--grey);
+}
+
+.form-field {
+  width: 100%;
+  margin: 0 0 1ch;
+  padding: 0;
+  position: relative;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  height: 3em;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--grey);
+  background: white;
+  border: 1px solid var(--light-grey);
+  outline: none;
+  outline-color: transparent;
+  outline-offset: 2px;
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out, outline-color 0.2s ease-in-out;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+.form-field textarea {
+  resize: vertical;
+  height: auto;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: 2px solid transparent;
+  outline-color: var(--light-grey);
+}
+.form-field input:disabled,
+.form-field select:disabled,
+.form-field textarea:disabled {
+  cursor: no-drop;
+  user-select: none;
+}
+.form-field label,
+.form-field label,
+.form-field label {
+  display: block;
+  font-size: 0.8em;
+  font-weight: 300;
+  line-height: 1;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #b9bdbb;
+  font-size: 1em;
+  font-weight: 300;
+}
+
+.form-field.has-floating-label input,
+.form-field.has-floating-label select,
+.form-field.has-floating-label textarea {
+  padding-top: 1.25em;
+  height: 3.5em;
+}
+.form-field.has-floating-label input::placeholder,
+.form-field.has-floating-label textarea::placeholder {
+  color: transparent !important;
+}
+.form-field.has-floating-label input + label,
+.form-field.has-floating-label select + label,
+.form-field.has-floating-label textarea + label {
+  position: absolute;
+  display: block;
+  opacity: 1;
+  pointer-events: none;
+  transition: all 0.1s ease-in;
+  left: 1rem;
+  top: 1rem;
+  font-size: 1em;
+  line-height: 1;
+  color: var(--light-grey);
+}
+.form-field.has-floating-label input:focus + label,
+.form-field.has-floating-label select:focus + label,
+.form-field.has-floating-label textarea:focus + label,
+.form-field.has-floating-label input:-webkit-autofill + label,
+.form-field.has-floating-label textarea:-webkit-autofill + label,
+.form-field.has-floating-label input:not(:placeholder-shown) + label,
+.form-field.has-floating-label textarea:not(:placeholder-shown) + label,
+.form-field.has-floating-label select:not(:required:invalid) + label {
+  top: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 1;
+}
+
+.form-field.is-removable input,
+.form-field.is-removable select,
+.form-field.is-removable textarea {
+  padding-right: 2em;
+}
+.form-field.is-removable input ~ button.remove,
+.form-field.is-removable select ~ button.remove,
+.form-field.is-removable textarea ~ button.remove {
+  position: absolute;
+  display: block;
+  color: var(--grey);
+  border-radius: 1em;
+  top: 0.65rem;
+  height: 1em;
+  width: 1em;
+  right: 1.25rem;
+  font-family: none;
+  font-size: 2em;
+  line-height: 1;
+  z-index: 1;
+}
+.form-field.is-removable input ~ button:hover,
+.form-field.is-removable select ~ button:hover,
+.form-field.is-removable textarea ~ button:hover {
+  background: whitesmoke;
+}
+
+.form-field.has-errors::after,
+.form-field.is-success::after {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  line-height: 3;
+  position: absolute;
+  display: block;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  width: 2em;
+  pointer-events: none;
+  z-index: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.form-field.has-floating-label.has-errors::after,
+.form-field.has-floating-label.is-success::after {
+  line-height: 3.5rem;
+}
+.form-field.has-errors::after {
+  color: var(--red);
+  opacity: 1;
+  content: "!";
+}
+.form-field.is-success::after {
+  color: var(--green);
+  opacity: 1;
+  content: "✓";
+}
+.form-field.has-errors input,
+.form-field.has-errors select,
+.form-field.has-errors textarea,
+.form-check.has-errors label {
+  color: var(--red);
+}
+.form-field.has-errors > input,
+.form-field.has-errors > select,
+.form-field.has-errors > textarea,
+.form-check.has-errors > input {
+  border-color: var(--red);
+  outline-color: var(--red);
+}
+.form-field.has-errors > input,
+.form-field.has-errors > select,
+.form-field.has-errors > textarea,
+.form-field.has-errors .input-group,
+.form-field.is-success > input,
+.form-field.is-success > select,
+.form-field.is-success > textarea {
+  padding-right: 2em;
+}
+.form-field.has-errors > select,
+.form-field.is-success > select {
+  background-image: none;
+}
+
+.form-field span.message {
+  display: block;
+  font-size: 0.8em;
+  line-height: 1.2;
+  height: 0;
+  padding: 0;
+  color: var(--light-grey);
+  opacity: 0;
+  transform: translateY(-1ch);
+  transition: 0.3s ease-in-out;
+}
+.form-field.has-errors span.message {
+  height: auto;
+  padding: 1ch 0;
+  color: var(--red);
+  opacity: 1;
+  transform: translateY(0);
+}
+.form div.field-btn {
+  display: inline-flex;
+  margin-bottom: 1ch;
+  gap: 2ch;
+}
+.form div.field-btn button {
+  display: inline-block;
+  padding: 2px;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: var(--secondary);
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.form div.field-btn button:hover {
+  text-decoration: underline;
+}
+
+.form div.note {
+  display: inline-flex;
+  gap: 1ch;
+  margin-bottom: 1rem;
+}
+
+.form div.message-success {
+  display: block;
+  gap: 1ch;
+  margin-bottom: 1rem;
+}
+.form div.message-success h4,
+.form div.message-success p {
+  color: var(--green);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.note {
+  font-size: 0.8em;
+  line-height: 1;
+  color: var(--dark-grey);
+}
+
+p.note {
+  display: inline-block;
+  padding-bottom: .5em;
+}
+
+
+.alert {
+  color: white;
+  font-size: 0.8em;
+  line-height: 1;
+  background-color: var(--grey);
+  border-radius: 6px;
+  padding: 1ch;
+  margin: 1ch 0;
+}
+.alert.--info {
+  background-color: var(--secondary);
+}
+.alert.--success {
+  background-color: var(--green);
+}
+.alert.--danger {
+  background-color: var(--red);
+}
+.alert a {
+  text-decoration: underline;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  width: 90%;
+  min-height: 10rem;
+  max-width: 30rem;
+  min-width: 20rem;
+  margin: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  opacity: 0;
+  z-index: 9;
+  transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+}
+.modal button.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+}
+.modal h4 {
+  color: var(--grey);
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 -2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--light-grey);
+}
+.modal.is-closed {
+  opacity: 0;
+  visibility: hidden;
+}
+.modal.is-opened {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.dimmer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+  z-index: 1;
+  transition: opacity .2s ease-in-out;
+}
+.dimmer.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.button {
+  display: inline-block;
+  position: relative;
+  padding: 1em;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  color: white;
+  background: var(--primary);
+  border: 3px solid var(--primary);
+  border-radius: 6px;
+  cursor: pointer;
+  outline-offset: 2px;
+  outline: 2px solid transparent;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+    background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+.button:hover {
+  outline-color: transparent;
+}
+.button:focus {
+  outline-color: var(--primary);
+}
+
+.button.--overlay {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.button.--overlay:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 9px 12px rgba(0, 0, 0, 0.5);
+}
+
+.button.--submit {
+  display: block;
+  color: var(--green);
+  width: 100%;
+  background-color: var(--white);
+  border-color: var(--green);
+  padding-right: 3em;
+  box-shadow: none;
+}
+.button.--submit i {
+  display: inline-block;
+}
+.button.--submit i:last-child {
+  padding-left: 1ch;
+}
+.button.--submit i:first-child {
+  padding-right: 1ch;
+}
+.button.--submit:hover {
+  color: var(--white);
+  background-color: var(--green);
+  transform: none;
+}
+.button.--submit:focus {
+  outline-color: var(--green);
+}
+.button.--submit:disabled {
+  cursor: no-drop;
+  color: white;
+  border-color: var(--light-grey);
+  background-color: var(--light-grey);
+}
+.button.--submit.is-submitting {
+  color: transparent;
+  background-color: var(--green);
+  pointer-events: none;
+}
+.button.--submit.is-submitting i {
+  opacity: 1;
+}
+.button.--submit.is-submitting span::after {
+  position: absolute;
+  display: block;
+  content: "";
+  top: calc(50% - 1ch);
+  left: calc(50% - 1ch);
+  width: 2ch;
+  height: 2ch;
+  background: white;
+  border-radius: 1ch;
+  animation: ping .8s ease infinite;
+}
+.button.--submit.is-submitted {
+  color: white;
+  background-color: var(--green);
+  pointer-events: none;
+}
+.button.--submit.is-submitted i {
+  top: calc(50% - 1ch);
+  right: calc(50% - 1ch);
+  animation: bounce-in 1.2s ease;
+}
+.button.--submit.is-submitted span {
+  opacity: 0;
+}
+.button.--submit.is-submitted:disabled,
+.button.--submit.is-submitted:focus,
+.button.--submit.is-submitting:focus {
+  outline-color: transparent;
+  border-color: var(--green);
+}
+.button.--submit.is-submitted i,
+.button.--submit.is-submitting i {
+  position: absolute;
+  width: 2ch;
+  height: 2ch;
+  padding: 0;
+}
+
+button.close {
+  display: block;
+  width: 1em;
+  height: 1em;
+  color: var(--grey);
+  font-family: none;
+  font-size: 3em;
+  line-height: 1;
+}
+button.close:hover {
+  color: black;
+}
+
+button.next {
+  display: inline-block;
+  height: 2em;
+  width: 2em;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 2em;
+  cursor: pointer;
+}
+button.next i {
+  display: block;
+  transform: translateY(0);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+button.next:hover i {
+  transform: translateY(0.5ch);
+}
+
+
+div.logo div.letters {
+  font-family: "Lifelogo Easy", sans-serif;
+  font-size: min(15vmin, 9rem);
+  line-height: 1;
+  user-select: none;
+  color: var(--primary);
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+}
+div.logo div.letters {
+  transform: scale(.9);
+  transition: transform 1s ease-in-out;
+}
+div.logo div.letters span {
+  display: inline-block;
+  transform: rotateY(-60deg) scale(1.2);
+  opacity: 0;
+}
+div.logo.--animate div.letters span {
+  opacity: 1;
+  transform: none;
+  transition: transform .6s ease-out, opacity .4s ease-out;
+}
+div.logo.--animate div.letters {
+  transform: none;
+}
+
+.badge {
+  position: absolute;
+  font-family: "Lifelogo Easy", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  user-select: none;
+}
+.badge .years {
+  position: relative;
+  display: inline-block;
+  padding: 0 1em 0 .5em;
+  text-align: right;
+}
+.badge .years > div.val {
+  display: block;
+  font-size: 4em;
+}
+.badge .years > sub {
+  position: absolute;
+  display: block;
+  font-size: 1em;
+  line-height: 1;
+  right: 0;
+  transform: rotate(-75deg) translate(2.0em, 0);
+}
+.badge .img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.badge .img > img {
+  width: 100%;
+  height: auto;
+}
+.badge .img::before {
+  position: absolute;
+  content: "";
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  bottom: 2rem;  
+  border-radius: 20rem;
+  background: black;
+  filter: blur(60px);
+  z-index: -1;
+}
+.badge .txt {
+  font-size: 1em;
+  line-height: 1;
+  max-width: 12ch;
+  margin: 0;
+}
+.img {
+  transition: filter .5s ease-out;
+}
+.img.--loading {
+  filter: blur(15px);
+}
+
+@media screen and (max-width: 980px) {
+  .section.--intro picture {
+    transform: scale(1.04);
+  }
+  .section.--intro > .badge.wreath {
+    font-size: min(1.5rem, 2.5vh);
+  }
+  .section.--intro > .badge.right,
+  .section.--intro > .badge.left {
+    font-size: min(1rem, 3vw);
+    opacity: .8;
+  }
+}
+@media screen and (max-width: 420px) {
+  body {
+    font-size: 18px;
+  }
+  .section:not(.--intro) {
+    padding: 2rem;
+  }
+  .section.--intro {
+    height: 94vh;
+    min-height: 27rem;
+  }
+  .section.--intro picture {
+    transform: scale(1.08);
+  }
+  .section.--intro svg.logo {
+    left: 4%;
+    right: 4%;
+  }
+  .headerimage {
+    margin: 0 -1rem 1rem;
+  }
+  .details {
+    width: 85%;
+    gap: 1ch;
+  }
+  .details:not(.--facts) dt,
+  .details:not(.--facts) dd {
+    width: 100%;
+    flex: 0 1 auto;
+    text-align: left;
+  }
+  .details:not(.--facts) dd {
+    margin-bottom: 2ch;
+  }
+  .is-mobile-hidden {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 421px) {
+  .is-desktop-hidden {
+    display: none !important;
+  }
+}
+
+.form-checkbox-switch {
+  display: flex;
+  gap: 1ch;
+  font-size: 1rem;
+  line-height: 30px;
+  font-weight: 300;
+  margin-bottom: .5em;
+}
+
+.checkbox-switch {
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
+  line-height: 1.2;
+  font-size: 12px;
+}
+
+.checkbox-switch input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.checkbox-switch .checkbox-animate {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #95a5a6;
+  -webkit-transition: background 0.25s ease-out 0s;
+  transition: background 0.25s ease-out 0s;
+}
+
+.checkbox-switch .checkbox-animate:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  background-color: #7f8c8d;
+  top: 5px;
+  left: 5px;
+  transition: all 0.3s ease-out 0s;
+  z-index: 1;
+}
+
+.checkbox-switch input:checked + .checkbox-animate {
+  background-color: #2ecc71;
+}
+
+.checkbox-switch input:checked + .checkbox-animate:before {
+  left: 55px;
+  background-color: #27ae60;
+}
+
+.checkbox-switch input:active + .checkbox-animate:before {
+  width: 30px;
+}
+.checkbox-switch input:checked:active + .checkbox-animate:before {
+  left: 45px;
+}
+
+.checkbox-switch .checkbox-off,
+.checkbox-switch .checkbox-on {
+  display: block;
+  width: 100%;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  transition: all 0.3s ease-out 0s;
+}
+
+.checkbox-switch .checkbox-off {
+  opacity: 1;
+}
+.checkbox-switch .checkbox-on {
+  display: none;
+  opacity: 0;
+}
+
+.checkbox-switch input:checked + .checkbox-animate .checkbox-off {
+  display: none;
+  opacity: 0;
+}
+
+.checkbox-switch input:checked + .checkbox-animate .checkbox-on {
+  display: block;
+  opacity: 1;
+}

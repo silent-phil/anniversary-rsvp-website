@@ -6,6 +6,7 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
 import * as $api_invitees_id_ from "./routes/api/invitees/[id].ts";
+import * as $api_invitees_csv from "./routes/api/invitees/csv.ts";
 import * as $api_invitees_index from "./routes/api/invitees/index.ts";
 import * as $api_notify_index from "./routes/api/notify/index.ts";
 import * as $api_purge from "./routes/api/purge.ts";
@@ -30,6 +31,7 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/_middleware.ts": $_middleware,
     "./routes/api/invitees/[id].ts": $api_invitees_id_,
+    "./routes/api/invitees/csv.ts": $api_invitees_csv,
     "./routes/api/invitees/index.ts": $api_invitees_index,
     "./routes/api/notify/index.ts": $api_notify_index,
     "./routes/api/purge.ts": $api_purge,

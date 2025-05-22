@@ -8,6 +8,7 @@ import MultiPersonInput from "./MultiPersonInput.tsx";
 import Button from "../components/common/Button.tsx";
 import Switch from "../components/common/Switch.tsx";
 import Alert from "../components/common/Alert.tsx";
+import Action from "../components/common/Action.tsx";
 
 
 interface RegisterFormProps {
@@ -128,17 +129,18 @@ export default function Form({ active, invitees, user, registered, redacted, adm
           <fieldset>
             {admin && (
               <>
-                <div class="alert --info">
-                  <i class="icon-info"></i>
+                <Alert style="info" icon="info">
                   Als Admin kannst du Anmeldungen bearbeiten
-                </div>
-                <Alert style="danger" icon="trash">
-                  Alle Daten löschen? <a href="#" onClick={handlePurgeClick}>Klicke hier</a>
                 </Alert>
                 <div class="box">
                   <h4>Einstellungen</h4>
                   <Switch name="registrationActive" onChange={handleSettingsChange} checked={registrationActive}>Anmelde-Formular aktiv?</Switch>
                   <Switch name="redactNames" onChange={handleSettingsChange} checked={redactNames}>Vollständige Namen verbergen?</Switch>
+                  <hr />
+                  <p>
+                    <Action icon="arrow-down" href="/api/invitees/csv">Teilnehmer exportieren</Action>
+                    <Action icon="trash" href="#" onClick={handlePurgeClick}>Alle Daten löschen</Action>
+                  </p>
                 </div>
               </>
             )}

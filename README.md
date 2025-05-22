@@ -19,7 +19,7 @@ SESSION_KEY | 1Dr0dh2kuzw**** | a token that is used to encrypt session cookies 
 ADMIN_USER | admin | Admin username
 ADMIN_PASSWORD | *** | Admin password
 ADMIN_SESSION_TIMEOUT | 900 | Admin session timeout in seconds
-LOGIN_ATTEMPTS_TIMEOUT | 15 | Admin Login attempts timeout in seconds
+LOGIN_ATTEMPTS_TIMEOUT | 900 | Admin Login attempts timeout in seconds
 LOGIN_ATTEMPTS_COUNT | 5 | How many login attempts can be made within the timeout window
 SMTP_SERVER |  | SMTP server for sending email by SMPT
 SMTP_USER |  | SMTP username for sending email by SMPT

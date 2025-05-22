@@ -32,9 +32,9 @@ export default function Login({ loggedIn }: LoginProps) {
           <div class="form-field">
             <input type="password" name="password" placeholder="Password" />
           </div>
-          <p>Demo-User: demo / Demo-Password: demo</p>
           <button class="button" type="submit">Los</button>
         </form>
+        <p>User: demo / Password: demo</p>
       </Modal>
     </>
   );

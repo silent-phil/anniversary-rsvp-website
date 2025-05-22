@@ -6,14 +6,14 @@ type AlertProps = {
   children: ComponentChildren;
 } & JSX.HTMLAttributes<HTMLDivElement>;
 
-export default function Image({ style, icon, children, ...props }: AlertProps) {
+export default function Alert({ style, icon, children, ...props }: AlertProps) {
 
   return (
     <div
       {...props}
       class={`alert --${style}`}
       >
-      <i class={`icon-${icon}`}></i>
+      {icon && <i class={`icon-${icon}`}></i>}
       {children}
     </div>
   );

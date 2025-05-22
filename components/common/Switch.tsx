@@ -8,7 +8,7 @@ type SwitchProps = {
   children: ComponentChildren;
 } & JSX.HTMLAttributes<HTMLInputElement>;
 
-export default function Button({ name, checked, children, onChange, ...props }: SwitchProps) {
+export default function Switch({ name, checked, children, onChange, ...props }: SwitchProps) {
 
   const handleChange = (ev: JSX.TargetedEvent<HTMLInputElement>) => {
     onChange && onChange(ev);

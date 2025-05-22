@@ -78,6 +78,12 @@ button {
   padding: 0;
   cursor: pointer;
 }
+hr {
+  margin: 1ch 0;
+  border: none;
+  height: 1px;
+  background-color: var(--light-grey);
+}
 #root,
 #__next {
   isolation: isolate;
@@ -1090,6 +1096,27 @@ button.next:hover i {
   transform: translateY(0.5ch);
 }
 
+a.action {
+  display: inline-block;
+  padding: 1ch 2ch;
+  margin-right: 1ch;
+  background: whitesmoke;
+  border: 1px solid var(--light-grey);
+  border-radius: 6px;
+  font-size: 0.75em;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--grey);
+}
+a.action:hover,
+a.action:active {
+  background-color: var(--light-grey);
+}
+a.action > i {
+  margin-left: -1ch;
+  margin-right: .5ch;
+}
 
 div.logo div.letters {
   font-family: "Lifelogo Easy", sans-serif;

@@ -7,7 +7,7 @@ type FullNameProps = {
   children: ComponentChildren;
 } & JSX.HTMLAttributes<HTMLParagraphElement>;
 
-export default function Button({ name, redacted, children, ...props }: FullNameProps) {
+export default function FullName({ name, redacted, children, ...props }: FullNameProps) {
 
   const firstname = name.split(' ')[0];
   const surname = name.split(' ')[1];

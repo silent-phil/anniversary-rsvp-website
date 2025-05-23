@@ -16,13 +16,22 @@ export const handler: Handlers<Invitee | null> = {
       });
 
     const invitees = await db.invitees.all();
-    const csvData = Convert.arrayToCsv(invitees);
+    const users = await db.users.all();
+
+    const data = invitees.map(invitee => ({
+      name: invitee.name,
+      email: users.find(u => u.id === invitee.user)?.email || '',
+      date: new Date(invitee.registeredAt).toISOString(),
+      accepted: invitee.accepted
+    }));
+
+    const csv = Convert.arrayToCsv(data);
     
     const headers = new Headers();
     headers.set("Content-Type", "text/csv; charset=utf-8");
     headers.set("Content-Disposition", 'attachment; filename="exported_data.csv"');
     
-    return new Response(csvData, {
+    return new Response(csv, {
       status: 200,
       headers: headers,
     });

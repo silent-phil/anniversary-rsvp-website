@@ -3,7 +3,7 @@
 This project started originally as a registration page for my family's anniverary.
 For this public repo all private assets/texts were removed and replaced by generic ones.
 
-The page features
+The page features:
 - A registration form, where users can register to the event
 - Sending confirmation emails to users
 - A admin-login (bottom) wheer you can see aditional data and control few settings
@@ -48,9 +48,10 @@ Learn more on these fascinating technologies:
 
 ### Getting started
 
-This project is not (yet) 100% ready to use out-of-the-box, whithtouth any coding understanding.
+This project is not (yet) 100% ready to use out-of-the-box, withouth any coding understanding.
 Page content (text and images) are directly inside the project and you would need swap assets and texts to your needs.
-It also assumes you have some basic understanding in project development.
+
+Follow these steps to get started:
 
 1) Install deno from https://docs.deno.com/runtime/ (no worries, it is way quicker/easier than node.js!)
 2) Start by cloning this repository to you local machine
@@ -60,8 +61,9 @@ It also assumes you have some basic understanding in project development.
 Note: Yes, deno does not require you to "install" any dependencies first, all is done on the first initial app run.
 
 Now, you may want to change assets or texts to you need.
-Please have a look in the followin locations:
- components/section -> contains the individual websites sections and their text content
- islands -> contains the interactive components of the website
- static/images -> contains the images
- routes/index.tsx -> this is the main page structure (no need to change)
+Please have a look in the following locations:
+
+* components/section -> contains the individual websites sections and their text content
+* islands -> contains the interactive components of the website
+* static/images -> contains the images
+* routes/index.tsx -> this is the main page structure (no need to change)

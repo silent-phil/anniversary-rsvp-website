@@ -33,6 +33,8 @@ export default function Form({ active, invitees, user, registered, redacted, adm
   const totalPersonCount = useComputed(() => 
     additionalPersons.value.filter((x) => !!x).length + (hasUserNameInput.value && !user.value ? 1 : 0));
 
+  const userOwnLink = useComputed(() => user.value ? 'https://miaundtom-demo.deno.dev/?ref=' + user.value?.id : null);
+
   const handleSubmit = async (ev: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
@@ -147,7 +149,7 @@ export default function Form({ active, invitees, user, registered, redacted, adm
             {registered && (
               <>
                 <div class="message-success">
-                  <p>Vielen Dank! Du hast dich bereits angemeldet als <q>{user.value?.email}</q>. 
+                  <p>Vielen Dank! Du hast dich angemeldet als <q>{user.value?.email}</q>. 
                   Du kannst bei Bedarf weitere Personen hinzufügen oder löschen</p>
                 </div>
               </>
@@ -198,6 +200,11 @@ export default function Form({ active, invitees, user, registered, redacted, adm
               </span>
               <i class="icon-thumbs-up"></i>
             </Button>
+          </div>
+          <div class="note">
+            <small>
+              {userOwnLink.value && (<p>Danke. Über folgenden Link kannst du jederzeit später deine Anmeldung editieren: <a href={userOwnLink.value}>{userOwnLink.value}</a></p>)}
+            </small>
           </div>
         </form>
       : 

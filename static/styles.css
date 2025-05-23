@@ -326,6 +326,7 @@ a.link:hover::after {
   margin: auto;
   max-width: 60rem;
   transform: translateX(2%);
+  font-size: min(15vmin, 9rem);
 }
 
 .section.--intro h1 {
@@ -1120,7 +1121,7 @@ a.action > i {
 
 div.logo div.letters {
   font-family: "Lifelogo Easy", sans-serif;
-  font-size: min(15vmin, 9rem);
+  font-size: 1em;
   line-height: 1;
   user-select: none;
   color: var(--primary);
@@ -1241,6 +1242,9 @@ div.logo.--animate div.letters {
   .section.--intro svg.logo {
     left: 4%;
     right: 4%;
+  }
+  .section.--intro div.logo {
+    font-size: 18vw;
   }
   .headerimage {
     margin: 0 -1rem 1rem;
